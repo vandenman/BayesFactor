@@ -91,7 +91,7 @@ anovaRepeatedMeasuresBF <-
                                     includeBottom = whichModels!="top",
                                     data = data)
     
-    models <- addRandomSlopes(models, data, dataTypes)
+    models <- addRandomSlopes(models, data, dataTypes, id)
     
     if(length(models)>getOption('BFMaxModels', 50000)) stop("Maximum number of models exceeded (",
                                                             length(models), " > ",getOption('BFMaxModels', 50000) ,"). ",
@@ -149,7 +149,7 @@ anovaRepeatedMeasuresBF <-
     return(bfObj)
   }
 
-getWithinSubjectFactors <- function(data, dataTypes) { 
+getWithinSubjectFactors <- function(data, dataTypes, id) {
   withinSubjectFactors <- c()
   for (fact in names(dataTypes[dataTypes == "fixed"])) {
     nDistinct <- length(unique(data[[fact]]))
@@ -160,8 +160,8 @@ getWithinSubjectFactors <- function(data, dataTypes) {
   return(withinSubjectFactors)
 }
 
-addRandomSlopes <- function(models, data, dataTypes) {
-  withinSubjectFactors <- getWithinSubjectFactors(data, dataTypes)
+addRandomSlopes <- function(models, data, dataTypes, id) {
+  withinSubjectFactors <- getWithinSubjectFactors(data, dataTypes, id)
   
   if (length(withinSubjectFactors) == 1)
     return(models)

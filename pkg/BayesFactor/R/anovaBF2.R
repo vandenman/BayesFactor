@@ -9,7 +9,7 @@
 ##' @param formula a formula containing the full model for the analysis
 ##'   (see Examples)
 ##' @param data a data frame containing data for all factors in the formula
-##' @param id a character vector specifying subject or participant membership
+##' @param id a character vector specifying subject or participant membership for repeated measures designs.
 ##' @param whichRandom a character vector specifying which factors are random
 ##' @param whichModels which set of models to compare; see Details
 ##' @param neverExclude a character vector containing a regular expression (see
@@ -71,8 +71,8 @@
 ##' @seealso \code{\link{lmBF}}, for testing specific models, and
 ##'   \code{\link{regressionBF}} and \code{anovaBF} for other functions for
 ##'   testing multiple models simultaneously.
-anovaRepeatedMeasuresBF <-
-  function(formula, data, id, whichRandom = NULL,
+anovaBF2 <-
+  function(formula, data, id = NULL, whichRandom = NULL,
            whichModels = "withmain", neverExclude=id, iterations = 10000, progress = getOption('BFprogress', interactive()),
            rscaleFixed = "medium", rscaleRandom = "nuisance", rscaleCont="medium", rscaleEffects = NULL, multicore = FALSE, method="auto",
            noSample=FALSE, callback=function(...) as.integer(0))
@@ -87,11 +87,15 @@ anovaRepeatedMeasuresBF <-
     
     dataTypes <- createDataTypes(formula, whichRandom, data, analysis = "lm")
     
+    if (!is.null(id))
+      formula <- stats::update.formula(formula, new = stats::as.formula(paste("~ . +", id)))
+    
     models = enumerateGeneralModels(formula, whichModels, neverExclude,
                                     includeBottom = whichModels!="top",
                                     data = data)
     
-    models <- addRandomSlopes(models, data, dataTypes, id)
+    if (!is.null(id))
+      models <- addRandomSlopes(models, data, dataTypes, id)
     
     if(length(models)>getOption('BFMaxModels', 50000)) stop("Maximum number of models exceeded (",
                                                             length(models), " > ",getOption('BFMaxModels', 50000) ,"). ",
@@ -161,6 +165,7 @@ getWithinSubjectFactors <- function(data, dataTypes, id) {
 }
 
 addRandomSlopes <- function(models, data, dataTypes, id) {
+  
   withinSubjectFactors <- getWithinSubjectFactors(data, dataTypes, id)
   
   if (length(withinSubjectFactors) == 1)
@@ -173,7 +178,7 @@ addRandomSlopes <- function(models, data, dataTypes, id) {
   
   nuisanceRandomSlopes <- paste0(allPossibleSlopes, ":", id)
   
-  termsToAdd <- as.formula(paste("~ . +", paste0(nuisanceRandomSlopes, collapse = " + ")))
-  models <- lapply(models, update.formula, new = termsToAdd)
+  termsToAdd <- stats::as.formula(paste("~ . +", paste0(nuisanceRandomSlopes, collapse = "+")))
+  models <- lapply(models, stats::update.formula, new = termsToAdd)
   return(models)
 }

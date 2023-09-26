@@ -46,11 +46,13 @@
 #'# This will overflow
 #'log(mean(exp(largeVals)))
 #'
+#'@export
 logMeanExpLogs = function(v)
 {
   logSummaryStats(v)$logMean
 }
 
+#'@export
 logCumMeanExpLogs = function(v)
 {
   logSummaryStats(v)$cumLogMean

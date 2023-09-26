@@ -1,4 +1,17 @@
 
+# all imports are listed here
+#'@importFrom graphics plot abline axis barplot par segments text
+#'@importFrom MatrixModels model.Matrix
+#'@importFrom methods .hasSlot S3Part S3Part<- as is new show slot slot<- slotNames
+#'@importFrom Rcpp evalCpp
+#'@importFrom stats cor dbeta pbeta pnorm aov dbinom dnorm dt formula integrate lm nlm optim pcauchy plogis pt qlogis rgamma sd t.test terms var dlogis
+#'@importFrom utils head packageDescription tail combn setTxtProgressBar txtProgressBar vignette
+#'@import mvtnorm pbapply stringr coda, Matrix
+
+
+
+
+
 # constructor
 BFBayesFactor <- function(numerator, denominator, bayesFactor, data){
   names(numerator) = rownames(bayesFactor)
@@ -260,22 +273,22 @@ setMethod('*', signature("BFBayesFactor", "BFodds"), function(e1, e2){
 # S3
 ######
 
-##' This function coerces objects to the BFBayesFactor class
-##'
-##' Function to coerce objects to the BFBayesFactor class
-##'
-##' Currently, this function will only work with objects of class
-##' \code{BFBayesFactorTop}, which are output from the functions \code{anovaBF}
-##' and \code{regressionBF} when the \code{whichModels} argument is set to
-##' \code{'top'}
-##' @title Function to coerce objects to the BFBayesFactor class
-##' @param object an object of appropriate class (for now, BFBayesFactorTop)
-##' @return An object of class \code{BFBayesFactor}
-##' @author Richard D. Morey (\email{richarddmorey@@gmail.com})
-##' @export
-##' @keywords misc
-##' @seealso \code{\link{regressionBF}}, \code{anovaBF} whose output is
-##'   appropriate for use with this function when \code{whichModels='top'}
+#' This function coerces objects to the BFBayesFactor class
+#'
+#' Function to coerce objects to the BFBayesFactor class
+#'
+#' Currently, this function will only work with objects of class
+#' \code{BFBayesFactorTop}, which are output from the functions \code{anovaBF}
+#' and \code{regressionBF} when the \code{whichModels} argument is set to
+#' \code{'top'}
+#' @title Function to coerce objects to the BFBayesFactor class
+#' @param object an object of appropriate class (for now, BFBayesFactorTop)
+#' @return An object of class \code{BFBayesFactor}
+#' @author Richard D. Morey (\email{richarddmorey@@gmail.com})
+#' @export
+#' @keywords misc
+#' @seealso \code{\link{regressionBF}}, \code{anovaBF} whose output is
+#'   appropriate for use with this function when \code{whichModels='top'}
 as.BFBayesFactor <- function(object)
   UseMethod("as.BFBayesFactor")
 

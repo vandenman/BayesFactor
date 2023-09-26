@@ -219,7 +219,7 @@ setMethod("recompute", "BFodds", function(x, progress = getOption('BFprogress', 
 #' @rdname priorOdds-method
 #' @name priorOdds<-,BFodds,numeric-method
 #' @docType methods
-#' @exportMethod
+# @exportMethod
 setReplaceMethod("priorOdds", signature(object = "BFodds", value = "numeric"), definition = function (object, value) {
   priorLogodds(object) <- log(value)
   object
@@ -228,7 +228,7 @@ setReplaceMethod("priorOdds", signature(object = "BFodds", value = "numeric"), d
 #' @rdname priorLogodds-method
 #' @name priorLogodds<-,BFodds,numeric-method
 #' @docType methods
-#' @exportMethod
+# @exportMethod
 setReplaceMethod("priorLogodds", signature(object = "BFodds", value = "numeric"), definition = function (object, value) {
   object@logodds$odds <- value
   object
@@ -250,7 +250,7 @@ setAs("BFodds", "BFprobability",
 # S3
 ######
 
-
+#'@export
 as.BFBayesFactor.BFodds <- function(object){
   if(!is.null(object@bayesFactor)){
     return(object@bayesFactor)
@@ -259,6 +259,7 @@ as.BFBayesFactor.BFodds <- function(object){
   }
 }
 
+#'@export
 as.BFprobability.BFodds <- function(object, normalize = NULL, lognormalize = NULL){
   if(is.null(lognormalize) & is.null(normalize)){
     lognormalize = 0
@@ -270,10 +271,11 @@ as.BFprobability.BFodds <- function(object, normalize = NULL, lognormalize = NUL
   return(BFprobability(object, lognormalize))
 }
 
-
+#'@export
 length.BFodds <- function(x)
   nrow(x@logodds)
 
+#'@export
 c.BFodds <-
   function(..., recursive = FALSE)
   {
@@ -319,57 +321,66 @@ c.BFodds <-
     return(bf)
   }
 
-
+#'@export
 names.BFodds <- function(x) {
   rownames(extractOdds(x))
 }
 
 # See https://www-stat.stanford.edu/~jmc4/classInheritance.pdf
+#'@export
 sort.BFodds <- function(x, decreasing = FALSE, ...){
   ord = order(extractOdds(x, logodds=TRUE)$odds, decreasing = decreasing)
   return(x[ord])
 }
 
+#'@export
 max.BFodds <- function(..., na.rm=FALSE){
   joinedodds = do.call('c',list(...))
   el <- head(joinedodds, n=1)
   return(el)
 }
 
+#'@export
 min.BFodds <- function(..., na.rm=FALSE){
   joinedodds = do.call('c',list(...))
   el <- tail(joinedodds, n=1)
   return(el)
 }
 
+#'@export
 which.max.BFodds <- function(x){
   index = which.max(extractOdds(x, logodds=TRUE)$odds)
   names(index) = names(x)[index]
   return(index)
 }
 
+#'@export
 which.min.BFodds <- function(x){
   index = which.min(extractOdds(x, logodds=TRUE)$odds)
   names(index) = names(x)[index]
   return(index)
 }
 
+#'@export
 head.BFodds <- function(x, n=6L, ...){
   n = ifelse(n>length(x),length(x),n)
   x = sort(x, decreasing=TRUE)
   return(x[1:n])
 }
 
+#'@export
 tail.BFodds <- function(x, n=6L, ...){
   n = ifelse(n>length(x),length(x),n)
   x = sort(x)
   return(x[n:1])}
 
+#'@export
 as.data.frame.BFodds <- function(x, row.names = NULL, optional=FALSE,...){
   df = extractOdds(x)
   return(df)
 }
 
+#'@export
 as.vector.BFodds <- function(x, mode = "any"){
   if( !(mode %in% c("any", "numeric"))) stop("Cannot coerce to mode ", mode)
   v = extractOdds(x)$odds

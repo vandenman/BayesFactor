@@ -2,13 +2,11 @@
 # all imports are listed here
 #'@importFrom graphics plot abline axis barplot par segments text
 #'@importFrom MatrixModels model.Matrix
-#'@importFrom methods .hasSlot S3Part S3Part<- as is new show slot slot<- slotNames
+#'@importFrom methods .hasSlot S3Part S3Part<- as is new show slot slot<- slotNames setAs
 #'@importFrom Rcpp evalCpp
 #'@importFrom stats cor dbeta pbeta pnorm aov dbinom dnorm dt formula integrate lm nlm optim pcauchy plogis pt qlogis rgamma sd t.test terms var dlogis
 #'@importFrom utils head packageDescription tail combn setTxtProgressBar txtProgressBar vignette
-#'@import mvtnorm pbapply stringr coda, Matrix
-
-
+#'@import mvtnorm pbapply stringr coda Matrix
 
 
 
@@ -292,73 +290,83 @@ setMethod('*', signature("BFBayesFactor", "BFodds"), function(e1, e2){
 as.BFBayesFactor <- function(object)
   UseMethod("as.BFBayesFactor")
 
-
+#'@export
 is.na.BFBayesFactor <- function(x){
   return(is.na(x@bayesFactor$bf))
 }
 
-
+#'@export
 names.BFBayesFactor <- function(x) {
   num <- sapply(x@numerator, function(el) el@shortName)
   den <- x@denominator@shortName
   return(list(numerator=num,denominator=den))
 }
 
+#'@export
 length.BFBayesFactor <- function(x)
   nrow(x@bayesFactor)
 
 # See https://www-stat.stanford.edu/~jmc4/classInheritance.pdf
+#'@export
 sort.BFBayesFactor <- function(x, decreasing = FALSE, ...){
   ord = order(x@bayesFactor$bf, decreasing = decreasing)
   return(x[ord])
 }
 
+#'@export
 max.BFBayesFactor <- function(..., na.rm=FALSE){
   joinedbf = do.call('c',list(...))
   el <- head(joinedbf, n=1)
   return(el)
 }
 
+#'@export
 min.BFBayesFactor <- function(..., na.rm=FALSE){
   joinedbf = do.call('c',list(...))
   el <- tail(joinedbf, n=1)
   return(el)
 }
 
+#'@export
 which.max.BFBayesFactor <- function(x){
   index = which.max(x@bayesFactor$bf)
   names(index) = rownames(x@bayesFactor)[index]
   return(index)
 }
 
+#'@export
 which.min.BFBayesFactor <- function(x){
   index = which.min(x@bayesFactor$bf)
   names(index) = rownames(x@bayesFactor)[index]
   return(index)
 }
 
+#'@export
 t.BFBayesFactor <- function(x){
   1/x
 }
 
-
+#'@export
 head.BFBayesFactor <- function(x, n=6L, ...){
   n = ifelse(n>length(x),length(x),n)
   x = sort(x, decreasing=TRUE)
   return(x[1:n])
 }
 
+#'@export
 tail.BFBayesFactor <- function(x, n=6L, ...){
   n = ifelse(n>length(x),length(x),n)
   x = sort(x)
   return(x[n:1])}
 
+#'@export
 as.data.frame.BFBayesFactor <- function(x, row.names = NULL, optional=FALSE,...){
   df = x@bayesFactor
   df$bf = exp(df$bf)
   return(df)
 }
 
+#'@export
 as.vector.BFBayesFactor <- function(x, mode = "any"){
   if( !(mode %in% c("any", "numeric"))) stop("Cannot coerce to mode ", mode)
   v = exp(x@bayesFactor$bf)
@@ -366,7 +374,7 @@ as.vector.BFBayesFactor <- function(x, mode = "any"){
   return(v)
 }
 
-
+#'@export
 c.BFBayesFactor <-
   function(..., recursive = FALSE)
   {

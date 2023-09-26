@@ -213,38 +213,44 @@ setMethod("filterBF", signature(x = "BFprobability", name = "character"),
 as.BFprobability <- function(object, normalize = NULL, lognormalize = NULL)
   UseMethod("as.BFprobability")
 
-
+#'@export
 length.BFprobability <- function(x)
   nrow(extractProbabilities(x))
 
+#'@export
 names.BFprobability <- function(x) {
   rownames(extractProbabilities(x))
 }
 
 # See https://www-stat.stanford.edu/~jmc4/classInheritance.pdf
+#'@export
 sort.BFprobability <- function(x, decreasing = FALSE, ...){
   ord = order(extractProbabilities(x, logprobs=TRUE)$probs, decreasing = decreasing)
   return(x[ord])
 }
 
+#'@export
 max.BFprobability <- function(..., na.rm=FALSE){
   if(nargs()>2) stop("Cannot concatenate probability objects.")
   el <- head(list(...)[[1]], n=1)
   return(el)
 }
 
+#'@export
 min.BFprobability <- function(..., na.rm=FALSE){
   if(nargs()>2) stop("Cannot concatenate probability objects.")
   el <- tail(list(...)[[1]], n=1)
   return(el)
 }
 
+#'@export
 which.max.BFprobability <- function(x){
   index = which.max(extractProbabilities(x, logprobs=TRUE)$probs)
   names(index) = names(x)[index]
   return(index)
 }
 
+#'@export
 which.min.BFprobability <- function(x){
   index = which.min(extractProbabilities(x, logprobs=TRUE)$probs)
   names(index) = names(x)[index]
@@ -252,22 +258,26 @@ which.min.BFprobability <- function(x){
 
 }
 
+#'@export
 head.BFprobability <- function(x, n=6L, ...){
   n = ifelse(n>length(x),length(x),n)
   x = sort(x, decreasing=TRUE)
   return(x[1:n])
 }
 
+#'@export
 tail.BFprobability <- function(x, n=6L, ...){
   n = ifelse(n>length(x),length(x),n)
   x = sort(x)
   return(x[n:1])}
 
+#'@export
 as.data.frame.BFprobability <- function(x, row.names = NULL, optional=FALSE,...){
   df = extractProbabilities(x)
   return(df)
 }
 
+#'@export
 as.vector.BFprobability <- function(x, mode = "any"){
   if( !(mode %in% c("any", "numeric"))) stop("Cannot coerce to mode ", mode)
   v = extractProbabilities(x)$probs
@@ -275,6 +285,7 @@ as.vector.BFprobability <- function(x, mode = "any"){
   return(v)
 }
 
+#'@export
 sum.BFprobability <-
   function(..., na.rm = FALSE)
   {

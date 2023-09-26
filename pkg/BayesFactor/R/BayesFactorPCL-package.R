@@ -59,7 +59,7 @@
 #'
 #'## See specific functions for examples.
 #'
-#'@useDynLib BayesFactor
+#' @useDynLib BayesFactor, .registration=TRUE
 NULL
 
 

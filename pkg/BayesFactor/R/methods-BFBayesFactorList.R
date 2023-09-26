@@ -89,7 +89,6 @@ setMethod("[", signature(x = "BFBayesFactorList", i = "missing", j = "index",
             return(x)
           })
 
-
 setAs("BFBayesFactorList" , "list",
       function ( from , to ){
         as.vector(from)
@@ -108,6 +107,7 @@ setAs("BFBayesFactorList" , "matrix",
 ## S3 Methods
 #####
 
+#'@export
 as.vector.BFBayesFactorList <- function(x, mode = "any"){
   if( !(mode %in% c("any", "list"))) stop("Cannot coerce to mode ", mode)
   vec = vector(mode = "list", length = length(x) )
@@ -117,6 +117,7 @@ as.vector.BFBayesFactorList <- function(x, mode = "any"){
   return(vec)
 }
 
+#'@export
 as.matrix.BFBayesFactorList <- function(x,...){
   matr <- sapply(x, as.vector)
   dim(matr) <- c(length(x[[1]]),length(x))

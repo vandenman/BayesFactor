@@ -88,12 +88,14 @@ setAs("BFBayesFactorTop", "BFBayesFactor",
 
 ######## S3
 
+#'@export
 sort.BFBayesFactorTop <- function(x, decreasing = FALSE, ...){
   x = as.BFBayesFactor(x)
   x = sort(x,decreasing = decreasing, ...)
   return(BFBayesFactorTop(x))
 }
 
+#'@export
 as.BFBayesFactor.BFBayesFactorTop <- function(object){
   BFBayesFactor(numerator=object@numerator,
                 denominator=object@denominator,
@@ -101,6 +103,7 @@ as.BFBayesFactor.BFBayesFactorTop <- function(object){
                 data = object@data)
 }
 
+#'@export
 length.BFBayesFactorTop <- function(x)
   length(as.BFBayesFactor(x))
 

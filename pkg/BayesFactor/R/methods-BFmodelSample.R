@@ -211,14 +211,17 @@ setMethod('posterior', signature(model = "BFcorrelation", index = "missing", dat
 ## S3
 ###########
 
+#'@export
 as.mcmc.BFmcmc <- function(x, ...){
   return(S3Part(x))
 }
 
+#'@export
 as.matrix.BFmcmc <- function(x,...){
   return(as.matrix(S3Part(x)))
 }
 
+#'@export
 as.data.frame.BFmcmc <- function(x, row.names=NULL,optional=FALSE,...){
   return(as.data.frame(S3Part(x)))
 }

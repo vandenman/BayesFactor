@@ -36,6 +36,7 @@
 #' @param ... additional arguments to pass to barplot()
 #' @method plot BFBayesFactor
 #' @author Richard D. Morey (\email{richarddmorey@@gmail.com})
+#' @export
 #' @examples
 #' data(puzzles)
 #'

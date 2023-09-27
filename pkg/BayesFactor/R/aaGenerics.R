@@ -3,6 +3,7 @@
 #' @param x first object
 #' @param y second object
 #' @return Returns \code{TRUE} or \code{FALSE}
+#' @export
 setGeneric("%same%", function(x, y) standardGeneric("%same%"))
 
 #' Find a model term in a vector of model terms
@@ -10,6 +11,7 @@ setGeneric("%same%", function(x, y) standardGeneric("%same%"))
 #' @param table the terms to be matched against
 #' @return A logical vector of the same length as x, indicating if a
 #' match was located for each element of x.
+#' @export
 setGeneric("%termin%", function(x, table) standardGeneric("%termin%"))
 
 #' Compare two models, with respect to some data
@@ -184,6 +186,7 @@ setGeneric("extractProbabilities", function(x, logprobs=FALSE, onlyprobs=FALSE) 
 #' @rdname priorOdds-method
 #' @param object object in which to set odds
 #' @param value odds
+#' @export
 setGeneric("priorOdds<-", function(object, value) standardGeneric("priorOdds<-"))
 
 #' Set prior log odds in an object
@@ -191,6 +194,7 @@ setGeneric("priorOdds<-", function(object, value) standardGeneric("priorOdds<-")
 #' @rdname priorLogodds-method
 #' @param object object in which to set log odds
 #' @param value log odds
+#' @export
 setGeneric("priorLogodds<-", function(object, value) standardGeneric("priorLogodds<-"))
 
 #' Filter the elements of an object according to some pre-specified criteria
@@ -200,5 +204,6 @@ setGeneric("priorLogodds<-", function(object, value) standardGeneric("priorLogod
 #' @param fixed logical. If TRUE, pattern is a string to be matched as is. See ?grepl for details.
 #' @param ... arguments passed to and from related methods
 #' @return Returns a filtered object
+#' @export
 setGeneric("filterBF", function(x, name, perl = FALSE, fixed = FALSE, ...) standardGeneric("filterBF"))
 

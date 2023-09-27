@@ -34,15 +34,14 @@ Imports:
 Suggests:
     doMC,
     foreach,
-    testthat,
+    testthat (>= 3.0.0),
     knitr,
     markdown,
     rmarkdown,
     arm,
     lme4,
     xtable,
-    languageR,
-    testthat (>= 3.0.0)
+    languageR
 URL: https://richarddmorey.github.io/BayesFactor/
 BugReports: https://github.com/richarddmorey/BayesFactor/issues
 LazyLoad: yes

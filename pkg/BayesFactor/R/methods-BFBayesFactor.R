@@ -246,11 +246,13 @@ setAs("BFBayesFactor", "vector",
 
 #' @rdname BFBayesFactor-class
 #' @name which.max,BFBayesFactor-method
+#' @export
 setMethod("which.max", "BFBayesFactor", function(x)
   which.max.BFBayesFactor(x) )
 
 #' @rdname BFBayesFactor-class
 #' @name which.min,BFBayesFactor-method
+#' @export
 setMethod("which.min", "BFBayesFactor", function(x)
   which.min.BFBayesFactor(x) )
 

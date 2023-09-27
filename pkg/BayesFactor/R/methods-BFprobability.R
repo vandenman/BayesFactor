@@ -243,14 +243,12 @@ min.BFprobability <- function(..., na.rm=FALSE){
   return(el)
 }
 
-#'@export
 which.max.BFprobability <- function(x){
   index = which.max(extractProbabilities(x, logprobs=TRUE)$probs)
   names(index) = names(x)[index]
   return(index)
 }
 
-#'@export
 which.min.BFprobability <- function(x){
   index = which.min(extractProbabilities(x, logprobs=TRUE)$probs)
   names(index) = names(x)[index]

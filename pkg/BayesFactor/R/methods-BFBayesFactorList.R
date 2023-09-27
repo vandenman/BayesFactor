@@ -117,7 +117,7 @@ as.vector.BFBayesFactorList <- function(x, mode = "any"){
   return(vec)
 }
 
-#'@export
+#'@method as.matrix BFBayesFactorList
 as.matrix.BFBayesFactorList <- function(x,...){
   matr <- sapply(x, as.vector)
   dim(matr) <- c(length(x[[1]]),length(x))

@@ -216,7 +216,7 @@ as.mcmc.BFmcmc <- function(x, ...){
   return(S3Part(x))
 }
 
-#'@export
+#'@method as.matrix BFmcmc
 as.matrix.BFmcmc <- function(x,...){
   return(as.matrix(S3Part(x)))
 }

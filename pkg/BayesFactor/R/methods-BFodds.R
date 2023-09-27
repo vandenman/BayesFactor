@@ -347,14 +347,14 @@ min.BFodds <- function(..., na.rm=FALSE){
   return(el)
 }
 
-#'@export
+#'@method which.max BFodds
 which.max.BFodds <- function(x){
   index = which.max(extractOdds(x, logodds=TRUE)$odds)
   names(index) = names(x)[index]
   return(index)
 }
 
-#'@export
+#'@method which.min BFodds
 which.min.BFodds <- function(x){
   index = which.min(extractOdds(x, logodds=TRUE)$odds)
   names(index) = names(x)[index]

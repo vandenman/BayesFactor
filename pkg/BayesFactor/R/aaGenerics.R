@@ -3,7 +3,6 @@
 #' @param x first object
 #' @param y second object
 #' @return Returns \code{TRUE} or \code{FALSE}
-#' @export
 setGeneric("%same%", function(x, y) standardGeneric("%same%"))
 
 #' Find a model term in a vector of model terms
@@ -11,7 +10,6 @@ setGeneric("%same%", function(x, y) standardGeneric("%same%"))
 #' @param table the terms to be matched against
 #' @return A logical vector of the same length as x, indicating if a
 #' match was located for each element of x.
-#' @export
 setGeneric("%termin%", function(x, table) standardGeneric("%termin%"))
 
 #' Compare two models, with respect to some data

@@ -329,14 +329,14 @@ min.BFBayesFactor <- function(..., na.rm=FALSE){
   return(el)
 }
 
-#'@export
+#'@method which.max BFBayesFactor
 which.max.BFBayesFactor <- function(x){
   index = which.max(x@bayesFactor$bf)
   names(index) = rownames(x@bayesFactor)[index]
   return(index)
 }
 
-#'@export
+#'@method which.min BFBayesFactor
 which.min.BFBayesFactor <- function(x){
   index = which.min(x@bayesFactor$bf)
   names(index) = rownames(x@bayesFactor)[index]

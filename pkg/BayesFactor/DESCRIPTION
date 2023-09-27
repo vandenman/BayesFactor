@@ -41,7 +41,7 @@ Suggests:
     arm,
     lme4,
     xtable,
-    languageR
+    languageR,
     testthat (>= 3.0.0)
 URL: https://richarddmorey.github.io/BayesFactor/
 BugReports: https://github.com/richarddmorey/BayesFactor/issues

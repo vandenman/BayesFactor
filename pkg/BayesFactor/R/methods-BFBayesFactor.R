@@ -343,7 +343,7 @@ which.min.BFBayesFactor <- function(x){
   return(index)
 }
 
-#'@export
+#'@method t BFBayesFactor 
 t.BFBayesFactor <- function(x){
   1/x
 }

@@ -1,6 +1,6 @@
-.onAttach<- function(libname, pkgname){
+.onAttach <- function(libname, pkgname){
   packageStartupMessage("************\nWelcome to ",pkgname," ",BFInfo(FALSE),". If you have",
-                        " questions, please contact Richard Morey (richarddmorey@gmail.com).\n\n",
+                        " questions, please contact Don van den Bergh (d.vandenbergh@uva.nl).\n\n",
                         "Type BFManual() to open the manual.\n************", 
                         appendLF = TRUE)
 }

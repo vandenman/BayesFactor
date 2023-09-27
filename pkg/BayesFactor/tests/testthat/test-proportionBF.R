@@ -1,6 +1,3 @@
-
-context("proportionBF")
-
 test_that("bad p values are handled correctly", {
     expect_error(
         proportionBF(0, N=0, p=0),
@@ -21,10 +18,10 @@ test_that("bad p values are handled correctly", {
 })
 
 test_that("no samples is handled correctly", {
-    proportionBF(0, N=0, p=0.5)
+  expect_snapshot(proportionBF(0, N=0, p=0.5))
 })
 
 test_that("floor/ceiling values behave correctly", {
-  proportionBF(  0, N=100, p=0.5)
-  proportionBF(100, N=100, p=0.5)
+  expect_snapshot(proportionBF(  0, N=100, p=0.5))
+  expect_snapshot(proportionBF(100, N=100, p=0.5))
 })

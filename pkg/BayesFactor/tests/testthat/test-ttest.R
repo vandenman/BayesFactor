@@ -1,6 +1,3 @@
-
-context('t-test')
-
 data('ToothGrowth')
 
 test_that('ttest works', {

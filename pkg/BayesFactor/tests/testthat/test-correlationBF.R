@@ -1,6 +1,3 @@
-
-context("correlationBF")
-
 set.seed(0)
 
 test_that("correlation works", {

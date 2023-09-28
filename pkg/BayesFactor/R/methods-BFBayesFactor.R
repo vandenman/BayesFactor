@@ -1,12 +1,13 @@
 
 # all imports are listed here
 #'@importFrom graphics plot abline axis barplot par segments text
+#'@importFrom Matrix Matrix t
 #'@importFrom MatrixModels model.Matrix
 #'@importFrom methods .hasSlot S3Part S3Part<- as is new show slot slot<- slotNames setAs
 #'@importFrom Rcpp evalCpp
 #'@importFrom stats cor dbeta pbeta pnorm aov dbinom dnorm dt formula integrate lm nlm optim pcauchy plogis pt qlogis rgamma sd t.test terms var dlogis
 #'@importFrom utils head packageDescription tail combn setTxtProgressBar txtProgressBar vignette
-#'@import mvtnorm pbapply stringr coda Matrix
+#'@import mvtnorm pbapply stringr coda
 
 
 

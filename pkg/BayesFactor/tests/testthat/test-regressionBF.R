@@ -5,7 +5,7 @@ test_that("regressionBF works", {
   a <- rnorm(100)
   y <- x + a + rnorm(100)
   data <- data.frame(y, x, a)
-  regressionBF(y ~ x + a, data, progress = FALSE)
+  expect_snapshot(regressionBF(y ~ x + a, data, progress = FALSE))
 })
 
 test_that("regressionBF errors appropriately", {
